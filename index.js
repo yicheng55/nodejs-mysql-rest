@@ -92,7 +92,6 @@ app.delete("/:id", async function (request, response) {
   try {
     const { id } = request.params;
     const [result] = await deleteEmployee(id);
-    console.log({ result });
     if (result.affectedRows > 0) {
       response.send({ success: true });
     } else {
