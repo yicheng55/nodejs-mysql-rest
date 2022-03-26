@@ -8,7 +8,7 @@ const addEmployee = async (name, department, address) => {
   );
 };
 
-const getAllEmployees = async (name, department) => {
+const getAllEmployees = async () => {
   const connection = await getConnection();
   return connection.execute(
     "select e.id,e.name,d.name department,e.address from employee e,department d where e.department=d.id"
