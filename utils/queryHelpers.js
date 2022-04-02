@@ -11,7 +11,7 @@ const addEmployee = async (name, department, address) => {
 const getAllEmployees = async () => {
   const connection = await getConnection();
   return connection.execute(
-    "select e.id,e.name,d.name department,e.address from employee e,department d where e.department=d.id"
+    "select e.id,e.name,d.name department,e.address from employee e,department d where e.department=d.id order by e.id"
   );
 };
 
@@ -36,10 +36,16 @@ const deleteEmployee = async (id) => {
   return connection.execute("delete from employee where id=?", [id]);
 };
 
+const getAllDepartments = async () => {
+  const connection = await getConnection();
+  return connection.execute("select id,name from department");
+};
+
 module.exports = {
   addEmployee,
   getAllEmployees,
   getEmployee,
   updateAddress,
   deleteEmployee,
+  getAllDepartments,
 };
