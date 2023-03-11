@@ -25,7 +25,8 @@ const corsOptions = {
   },
   credentials: true,
 };
-app.use(cors(corsOptions));
+app.use(cors());
+// app.use(cors(corsOptions));
 
 app.get("/departments", async function (request, response) {
   try {
@@ -44,6 +45,7 @@ app.get("/", async function (request, response) {
     const [result] = await getAllEmployees();
     response.send({ success: true, result });
   } catch (error) {
+    console.log(error);
     response.status(500).send({
       success: false,
       error: genericError,
@@ -136,4 +138,6 @@ app.delete("/:id", async function (request, response) {
   }
 });
 
-app.listen(8001);
+app.listen(8001, () => {
+  console.log("Yey, your server is running on port 8001");
+});
